@@ -1,0 +1,28 @@
+<div class="page-header">
+<h3>Weather:</h3>
+</div>
+<div class="container">
+<h4>Key in your city to get weather forecast...</h4>
+<form class="formWeather" role="form"
+  action="/process?form=weather" method="POST">
+ 
+  <input type="hidden" name="_csrf" value="{{csrf}}">
+ 
+  <div class="form-group">
+    <label for="fieldCity" class="col-sm-2 control-label">
+    City</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="fieldCity"
+      name="city">
+    </div>
+  </div> <!-- End of form-group -->
+ 
+  <div class="form-group">
+    <div class="col-sm-4">
+      <button type="submit" class="btn btn-default">Get Forecast</button>
+    </div>
+  </div> <!-- End of form-group -->
+ 
+</form>
+ 
+</div> <!-- End of contactUs -->
