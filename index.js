@@ -17,6 +17,8 @@ var app = express();
 // about the server
 app.disable('x-powered-by');
 
+City = require('./models/cities');
+
 // Set up Handlebars
 // Create a directory named views and then another named layouts
 // in it
@@ -87,14 +89,6 @@ app.use(function(err, req, res, next){
   next();
 });
 
-// If we want /about/contact we'd have to define it
-// before this route
-app.get('/about', function(req, res){
-  // Point at the about.handlebars view
-  // Allow for the test specified in tests-about.js
-  res.render('about');
-});
-
 // Link to contact view
 app.get('/weather', function(req, res){
 
@@ -112,8 +106,15 @@ app.get('/thankyou', function(req, res){
 // thankyou.handlebars
 // contact.handlebars calls process to process the form
 app.post('/process', function(req, res){
+	City.getCities(function(err, city){
+		if(err){
+			throw err;
+		}
+		res.json(city);
+	});
   console.log('Form : ' + req.query.form);
   console.log('City : ' + req.body.city);
+  console.log(res.body);
   res.redirect(303, '/thankyou');
 });
 
